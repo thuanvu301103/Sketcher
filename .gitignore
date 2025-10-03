@@ -19,7 +19,7 @@ venv/
 db.sqlite3
 
 # Media
-/media/
+images/
 *.png
 *.jpg
 *.jpeg

@@ -10,3 +10,8 @@ python -m venv venv
 ```bash
 venv\Scripts\activate
 ```
+
+## Run Project
+```bash
+python main.py
+```
