@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# Virtual env
+venv/
+.env/
+.venv/
+
+# Django stuff
+*.log
+*.pot
+*.pyc
+*.sqlite3
+db.sqlite3
+
+# Media
+/media/
+*.png
+*.jpg
+*.jpeg
+*.gif
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
