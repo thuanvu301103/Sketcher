@@ -1,6 +1,7 @@
 from pipeline.loader import show_image, load_image, save_image
 from pipeline.preprocess import color_convert, gaussian_blur
 from pipeline.feature_detect import edge_detect, contour_detect
+from pipeline.postprocess  import approximate_polygon
 import cv2
 
 ## Adjust the parameters
@@ -23,6 +24,9 @@ THRESHOLD_2 = 10
 # 5. Contour Detect
 CONTOUR_MODE = 'EXTERNAL'
 CONTOUR_METHOD = 'SIMPLE'
+
+# Approximate Polygon
+ESPILON_FACT = 0.02
 
 if __name__ == "__main__":
     
@@ -54,9 +58,9 @@ if __name__ == "__main__":
     
     ## 5. Approximate Polygon
     approximated_image = image.copy()
-    for cnt in contours:
-        epsilon = 0.02 * cv2.arcLength(cnt, True)
-        approx = cv2.approxPolyDP(cnt, epsilon, True)
-        cv2.drawContours(approximated_image, [approx], 0, (0, 255, 0), 2)
-
-    save_image(approximated_image, '07_approximate_polygon.jpg')
+    aproxs = approximate_polygon.approximate(
+        contours,
+        ESPILON_FACT
+    )
+    approximate_polygon.draw(approximated_image, aproxs)
+    save_image(approximated_image, '06_approximate_polygon.jpg')
