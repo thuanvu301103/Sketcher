@@ -11,13 +11,6 @@ venv/
 .env/
 .venv/
 
-# Django stuff
-*.log
-*.pot
-*.pyc
-*.sqlite3
-db.sqlite3
-
 # Media
 images/
 *.png
