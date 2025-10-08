@@ -1,21 +1,22 @@
 from pipeline.loader import show_image, load_image, save_image
 from pipeline.preprocess import color_convert, gaussian_blur
 from pipeline.feature_detect import edge_detect, contour_detect
-from pipeline.postprocess  import approximate_polygon
+from pipeline.postprocess  import approximate_polygon, reshape
 import cv2
+import numpy as np
 
 ## Adjust the parameters
 
 # 1. File name
-INPUT_FILE = 'image.jpg'
+INPUT_FILE = 'image.png'
 
 # 2 Color convert
 FROM_COLOR = 'RGB'
 TO_COLOR = 'GRAY'
 
 # 3. Blur Filter
-KERNAL_SIZE = 13
-SIGMA = 2
+KERNAL_SIZE = 7
+SIGMA = 1
 
 # 4. Edge Detect
 THRESHOLD_1 = 5
@@ -26,7 +27,7 @@ CONTOUR_MODE = 'EXTERNAL'
 CONTOUR_METHOD = 'SIMPLE'
 
 # Approximate Polygon
-ESPILON_FACT = 0.02
+ESPILON_FACT = 0.01
 
 if __name__ == "__main__":
     
@@ -64,3 +65,7 @@ if __name__ == "__main__":
     )
     approximate_polygon.draw(approximated_image, aproxs)
     save_image(approximated_image, '06_approximate_polygon.jpg')
+
+    ## 6. Reshape polygon
+    meshes = reshape.reshape(aproxs)
+    np.save("mesh.npy", np.array(meshes, dtype=object))
