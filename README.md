@@ -15,3 +15,8 @@ venv\Scripts\activate
 ```bash
 python main.py
 ```
+
+## Create Object in Blender
+- Open Blender ```Scripting``` mode
+- Open the ```mesh.py``` script
+- Run the script

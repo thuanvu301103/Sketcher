@@ -1,4 +1,4 @@
-from pipeline.loader import show_image, load_image, save_image
+from pipeline.loader import load_image, save_image
 from pipeline.preprocess import color_convert, gaussian_blur
 from pipeline.feature_detect import edge_detect, contour_detect
 from pipeline.postprocess  import approximate_polygon, reshape
@@ -26,8 +26,13 @@ THRESHOLD_2 = 10
 CONTOUR_MODE = 'EXTERNAL'
 CONTOUR_METHOD = 'SIMPLE'
 
-# Approximate Polygon
+# 6. Approximate Polygon
 ESPILON_FACT = 0.01
+
+# 7. Export numpy file
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+OUTPUT_NUMPY_DIR = os.path.join(BASE_DIR, "blender_tool")
 
 if __name__ == "__main__":
     
@@ -68,4 +73,4 @@ if __name__ == "__main__":
 
     ## 6. Reshape polygon
     meshes = reshape.reshape(aproxs)
-    np.save("mesh.npy", np.array(meshes, dtype=object))
+    np.save(os.path.join(OUTPUT_NUMPY_DIR, "mesh.npy"), np.array(meshes, dtype=object))
